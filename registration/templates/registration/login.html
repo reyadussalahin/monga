@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Login
+{% endblock title_block %}
+
+{% block style_block %}
+    <link href="https://v4-alpha.getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+{% endblock style_block %}
+
+
+{% block body_block %}
+	<div class="container">
+
+      <form id="login_form" method="post" action="{% url 'login' %}" class="form-signin">
+      	{% csrf_token %}
+        <h3 class="form-signin-heading"> Login </h4>
+        <label for="inputEmail" class="sr-only"> Username </label>
+        <input type="text" name="username" class="form-control" placeholder="username" required autofocus>
+        <label for="inputPassword" class="sr-only"> Password </label>
+        <input type="password" name="password" class="form-control" placeholder="password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+    </div> <!-- /container -->
+
+	<script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+{% endblock body_block %}

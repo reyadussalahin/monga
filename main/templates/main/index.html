@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	- Index
+{% endblock title_block %}
+
+{% block body_block %}
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-12 col-md-18">
+      <p class="float-right hidden-md-up">
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1>Welcome to Monga!</h1>
+          <p> A new Course Management System </p>
+      </div>
+      <div class="row">
+            <div class="col-6 col-lg-4">
+              <h2> About Monga </h2>
+              <p>
+                <ul>
+                  <li> It's an easy to use course management system </li>
+                  <li> It's free for everyone </li>
+                </ul>
+              </p>
+              <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+            </div><!--/span-->
+
+            <div class="col-6 col-lg-4">
+              <h2>Rules</h2>
+              <p>
+                <ul>
+                  <li> A user must register to create, instruct or attend a course </li>
+                  <li> Every user must respect another user's point of view  </li>
+                  <li> Use this site only for educational purposes </li>
+                </ul>
+              </p>
+              <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+            </div><!--/span-->
+
+            <div class="col-6 col-lg-4">
+              <h2>FAQs</h2>
+              <p>
+                <ul>
+                  <li>
+                    <p> Is it free ?</p>
+                    <p> -> Yes, service is free</p>
+                  </li>
+                  <li>
+                    <p> Can I use the service without being a registered user? </p>
+                    <p> -> No, one must register first </p>
+                  </li>
+                  <li>
+                    <p> What is the purpose of this site? </p>
+                    <p> -> It's been create only for management of course materials </p>
+                  </li>
+                </ul>
+              </p>
+              <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+            </div><!--/span-->
+          </div><!-- /row -->
+    </div><!--/span-->
+  </div><!--/row-->
+	
+{% endblock body_block %}

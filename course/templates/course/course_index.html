@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+{% block title_block %}
+	- {{ course.course_name }}
+{% endblock title_block %}
+
+
+{% block body_block %}
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-12 col-md-9">
+      <p class="float-right hidden-md-up">
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1> {{ course.course_name }} </h1>
+      </div>
+
+            <!-- // -->
+
+      <div class="row">
+            <div class="col-12 col-lg-18">
+              {% if is_creator %}
+                <p> </p>
+                <p> </p>
+                <h3> Secret Keys </h3>
+                <hr />
+                <p> Student key: {{ course.student_key }} </p>
+                <p> Instructor key: {{ course.instructor_key }} </p>
+              {% endif %}
+            </div><!--/span-->
+      </div><!-- /row -->
+
+      <!-- // -->
+
+      <div class="row">
+            <div class="col-12 col-lg-18">
+              <p> </p>
+              <p> </p>
+              <h3> Topics </h3>
+              <hr />
+              <p>
+                {% if topic_list %}
+                  <ol>
+                    {% for topic in topic_list %}
+                	  <li>
+                	    <a href="{% url 'material_list' topic.id %}"> {{ topic.topic_name }} </a>
+                		<p> {{ topic.topic_description }} </p>
+                	  </li>
+                	{% endfor %}
+                  </ol>
+                {% else %}
+                	No topics added yet
+                {% endif %}
+              </p>
+              <div>
+				        {% if is_instructor %}
+			            <br />
+			            <a href="{% url 'add_topic' course.id %}"> Create New Topic </a>
+		            {% endif %}
+	              </div>
+              <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+            </div><!--/span-->
+      </div><!-- /row -->
+
+    </div><!--/span-->
+
+    <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+      <h3> Instructors </h3>
+      {% if instructor_list %}
+	   	<div class="list-group">
+	   	  {% for instructor in instructor_list %}
+		    <a href="{% url 'profile' instructor.instructor.username %}" class="list-group-item"> {{ instructor.instructor.first_name }} {{ instructor.instructor.last_name }} </a>
+		  {% endfor %}
+        </div>
+	  {% else %}
+	    <div class="list-group">
+		  <a href="#" class="list-group-item"> No instructors assigned yet </a>
+        </div>
+	  {% endif %}
+      
+      <hr>
+      <h3> Students </h3>
+      {% if student_list %}
+	   	<div class="list-group">
+	   	  {% for student in student_list %}
+		    <a href="{% url 'profile' student.student.username %}" class="list-group-item"> {{ student.student.first_name }} {{ student.student.last_name }} </a>
+		  {% endfor %}
+        </div>
+	  {% else %}
+		  <div class="list-group">
+		    <a href="#" class="list-group-item"> No students enrolled yet </a>
+          </div>
+	  {% endif %}
+    </div><!--/span-->
+  </div><!--/row-->
+  
+  <div>
+    <br />
+    <p> Course provided by
+	<a href="{% url 'profile' course.creator.username %}"> {{ course.creator.first_name }} {{ course.creator.last_name }} </a>
+    </p>
+  </div>
+
+
+{% endblock body_block %}

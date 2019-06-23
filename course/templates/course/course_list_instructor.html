@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Course Instructor
+{% endblock title_block %}
+
+{% block body_block %}
+	<div>
+		{% if course_instructed %}
+			<h1> Instructor of </h1>
+			<br />
+			<hr />
+			<ol>
+				{% for course in course_instructed %}
+					<li>
+						<a href="{% url 'course_index' course.id %}">
+							{{ course.course_name }} ({{ course.session_name }})
+						</a>
+					</li>
+					<br />
+				{% endfor %}
+			</ol>
+		{% else %}
+			<p> No course instructed yet </p>
+		{% endif%}
+		
+		{% if request.user.username == username %}
+			<a href="{% url 'instruct_course' %}">
+				<button type="button"> Instruct Course </button>
+			</a>
+			<br />
+		{% endif %}
+	</div>
+{% endblock body_block %}

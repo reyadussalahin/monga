@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Profile
+{% endblock title_block %}
+
+
+{% block body_block %}
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-12 col-md-9">
+      <p class="float-right hidden-md-up">
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div>
+		{% if profile.picture %}
+			<a href="{{ profile.picture.url }}" download>
+				<img width="180" src="{{ profile.picture.url }}" alt="Profile picture">
+			</a>
+		{% endif %}
+		<br />
+	</div>
+      <div class="row">
+            <div class="col-6 col-lg-4">
+              <br />
+              <br />
+              <p> Me: {{ profile.user.first_name }} {{ profile.user.last_name }} </p>
+              <p> Email: {{ profile.user.email }}</p>
+            </div><!--/span-->
+           
+       </div><!-- /row -->
+    </div><!--/span-->
+
+    <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Course info</a>
+            <a href="{% url 'course_list_creator' profile.user.username %}" class="list-group-item">Course Created</a>
+            <a href="{% url 'course_list_instructor' profile.user.username %}" class="list-group-item">Course Instructed</a>
+            <a href="{% url 'course_list_student' profile.user.username %}" class="list-group-item">Course Enrolled</a>
+          </div>
+        </div><!--/span-->
+  </div><!--/row-->
+
+  {% if profile.user.username == request.user.username %}
+	<div>
+	 <p> Edit </p>
+	</div>
+  {% endif %}
+
+{% endblock body_block %}

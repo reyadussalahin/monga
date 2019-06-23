@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+	- Materials ({{ course.course_name }})
+{% endblock title_block %}
+
+{% block body_block %}
+	<div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-12 col-md-18">
+      <p class="float-right hidden-md-up">
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1> {{ course.course_name }} </h1>
+      </div>
+
+      <div class="row">
+            <div class="col-12 col-lg-18">
+              <p> </p>
+              <p> </p>
+              <h3> Topic: {{ topic.topic_name }} </h3>
+              <hr />
+              <p>
+                {% if material_list %}
+                  <ol>
+                    {% for material in material_list %}
+                      <li>
+                  	    <h4>
+                  		  <a href="{{ material.material.url }}" download> {{ material.material_name }} </a>
+                  		</h4>
+                  		<p> {{ material.material_description }} </p>
+                  	  </li>
+                  	{% endfor %}
+                  </ol>
+                {% else %}
+                  No materials added yet
+                {% endif %}
+                <br />
+              </p>
+              <div>
+                {% if is_instructor %}
+              	  <br />
+              	  <a href="{% url 'add_material' topic.id %}"> Add New Material </a>
+                {% endif %}
+              </div>
+              <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+            </div><!--/span-->
+      </div><!-- /row -->
+
+    </div><!--/span-->
+  </div><!--/row-->
+  
+  <div>
+    <br />
+    <p> Course provided by
+	<a href="{% url 'profile' course.creator.username %}"> {{ course.creator.first_name }} {{ course.creator.last_name }} </a>
+    </p>
+  </div>
+
+{% endblock body_block %}

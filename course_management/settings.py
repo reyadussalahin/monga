@@ -36,7 +36,7 @@ SECRET_KEY = '!ngool%ob(#1mk$rr#l7@)8nxa40kyac@kgtxgve60bo+rr^-l'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG = False
 
 ALLOWED_HOSTS = ['*']
